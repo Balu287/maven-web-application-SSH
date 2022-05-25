@@ -43,7 +43,12 @@ jobs:
           path: /tmp/artifacts
           
       # Deploy Artifacts to S3
-      
+      - deploy:
+          requires:
+             - build
+           filters:
+             branches:
+               only: main
       - run: # Install the AWS CLI if it is not already included in the docker image
            name: Install awscli
            command: sudo pip install awscli
