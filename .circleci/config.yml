@@ -44,6 +44,8 @@ jobs:
       # Deploy Artifacts to S3
       - run:
        # Install the AWS CLI if it is not already included in the docker image
+       orbs: 
+         aws-s3: circleci/aws-s3@3.0.0
            name: Install awscli
            command: |
              curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
@@ -53,7 +55,7 @@ jobs:
            
       - run: # Deploy to S3 using the sync command
            name: Deploy to S3
-           command: sudo aws s3 sync /tmp/artifacts/ s3://myartifactsci/artifacts/
+           command: sudo aws s3 cp /tmp/artifacts/ s3://myartifactsci/artifacts/ --recursively
           
       # Then run your tests!
       - run:
