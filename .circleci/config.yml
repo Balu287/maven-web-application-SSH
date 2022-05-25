@@ -53,7 +53,7 @@ jobs:
            
       - run: # Deploy to S3 using the sync command
            name: Deploy to S3
-           command: sudo aws s3 cp /tmp/artifacts/*.war s3://myartifactsci/artifacts/ --recursive
+           command: sudo aws s3 sync /tmp/artifacts/*.war s3://myartifactsci/artifacts/ --recursive
           
       # Then run your tests!
       - run:
