@@ -43,16 +43,12 @@ jobs:
           path: /tmp/artifacts
           
       # Deploy Artifacts to S3
-      - deploy:
-          requires:
-             - build
-           filters:
-             branches:
-               only: main
-      - run: # Install the AWS CLI if it is not already included in the docker image
+      - run:
+       # Install the AWS CLI if it is not already included in the docker image
            name: Install awscli
            command: sudo pip install awscli
-       - run: # Deploy to S3 using the sync command
+           
+      - run: # Deploy to S3 using the sync command
            name: Deploy to S3
            command: aws s3 sync /home/circleci/project/target/maven-web-application.war s3://myartifactsci/artifacts/
           
