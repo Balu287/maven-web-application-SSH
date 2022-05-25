@@ -33,6 +33,7 @@ jobs:
           name: Creating Dummy Artifacts
           working_directory: /home/circleci/project/target
           command: |
+            ls -lrt /home/circleci/project/target
             mkdir /tmp/artifacts;
             cp -r /home/circleci/project/target/maven-web-application.war /tmp/artifacts;
       
