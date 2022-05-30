@@ -44,8 +44,6 @@ jobs:
       # Deploy Artifacts to S3
       - run:
        # Install the AWS CLI if it is not already included in the docker image
-       orbs: 
-         aws-s3: circleci/aws-s3@3.0.0
            name: Install awscli
            command: |
              curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
