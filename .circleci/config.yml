@@ -22,7 +22,7 @@ jobs:
     steps:
       - add_ssh_keys:
             fingerprints:
-            - "43:63:54:8d:49:ee:83:6c:d9:03:59:24:07:ae:7f:58"
+            - "d7:2f:b2:22:c3:d6:cd:66:7d:f7:aa:25:cc:52:bd:30"
       # Checkout the code as the first step.
       - checkout
       # Use mvn clean and package as the standard maven build phase
@@ -38,8 +38,8 @@ jobs:
      # - run:
       #    name: Deploy Over SSH
        #   command: |
-        #    ssh -o StrictHostKeyChecking=no ec2-user@ec2-13-126-49-158.ap-south-1.compute.amazonaws.com
-         #   scp -r /home/circleci/project/target/maven-web-application.war ec2-user@ec2-13-126-49-158.ap-south-1.compute.amazonaws.com:/tmp
+        #    ssh -o StrictHostKeyChecking=no circleuser@ec2-54-160-234-57.compute-1.amazonaws.com
+         #   scp -r /home/circleci/project/target/maven-web-application.war circleuser@ec2-54-160-234-57.compute-1.amazonaws.com:/tmp
        
 
       - store_artifacts:
