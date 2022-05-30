@@ -40,6 +40,7 @@ jobs:
           command: |
             ssh -o StrictHostKeyChecking=no circleuser@ec2-54-160-234-57.compute-1.amazonaws.com
             #scp -r /home/circleci/project/target/maven-web-application.war circleuser@ec2-54-160-234-57.compute-1.amazonaws.com:/tmp
+            no_output_timeout: 15m
        
 
       - store_artifacts:
