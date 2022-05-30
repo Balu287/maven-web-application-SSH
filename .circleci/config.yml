@@ -19,8 +19,11 @@ jobs:
           password: India@123
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
-    
-     # Checkout the code as the first step.
+    steps:
+      - add_ssh_keys:
+            fingerprints:
+            - "43:63:54:8d:49:ee:83:6c:d9:03:59:24:07:ae:7f:58"
+      # Checkout the code as the first step.
       - checkout
       # Use mvn clean and package as the standard maven build phase
       - run:
@@ -30,27 +33,20 @@ jobs:
           name: Creating Dummy Artifacts
           working_directory: /home/circleci/project/target
           command: |
-            chmod 777 /home/circleci/project/target/*;
-            ls -lrt /home/circleci/project/target;
             mkdir /tmp/artifacts;
-            cp -r /home/circleci/project/target/maven-web-application.war /tmp/artifacts;
-            chmod 777 /tmp/artifacts*;
+            cp -r "/home/circleci/project/target/maven-web-application.war" /tmp/artifacts;
+     # - run:
+      #    name: Deploy Over SSH
+       #   command: |
+        #    ssh -o StrictHostKeyChecking=no ec2-user@ec2-13-126-49-158.ap-south-1.compute.amazonaws.com
+         #   scp -r /home/circleci/project/target/maven-web-application.war ec2-user@ec2-13-126-49-158.ap-south-1.compute.amazonaws.com:/tmp
+       
+
       - store_artifacts:
           path: /tmp/artifacts
           
-      # Deploy Artifacts to S3
-      - run:
-       # Install the AWS CLI if it is not already included in the docker image
-           name: Install awscli
-           command: |
-             curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-             unzip awscliv2.zip
-             sudo ./aws/install
-             aws configure list
-           
-      - run: # Deploy to S3 using the sync command
-           name: Deploy to S3
-           command: sudo aws s3 cp /tmp/artifacts/ s3://myartifactsci/artifacts/ --recursively
+      - store_artifacts:
+          path: /tmp/artifacts
           
       # Then run your tests!
       - run:
