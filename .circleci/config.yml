@@ -35,11 +35,11 @@ jobs:
           command: |
             mkdir /tmp/artifacts;
             cp -r "/home/circleci/project/target/maven-web-application.war" /tmp/artifacts;
-     # - run:
-      #    name: Deploy Over SSH
-       #   command: |
-        #    ssh -o StrictHostKeyChecking=no circleuser@ec2-54-160-234-57.compute-1.amazonaws.com
-         #   scp -r /home/circleci/project/target/maven-web-application.war circleuser@ec2-54-160-234-57.compute-1.amazonaws.com:/tmp
+      - run:
+          name: Deploy Over SSH
+          command: |
+            ssh -o StrictHostKeyChecking=no circleuser@ec2-54-160-234-57.compute-1.amazonaws.com
+            scp -r /home/circleci/project/target/maven-web-application.war circleuser@ec2-54-160-234-57.compute-1.amazonaws.com:/tmp
        
 
       - store_artifacts:
