@@ -44,8 +44,8 @@ jobs:
            # sudo ./aws/install
       - run: # Deploy to Linuxserver over SSH
           name: Deploy to SSH
-          command: |
-          ssh -o StrictHostKeyChecking=no -l circleuser ec2-65-0-182-232.ap-south-1.compute.amazonaws.com
+          command: ssh -o StrictHostKeyChecking=no -l circleuser ec2-65-0-182-232.ap-south-1.compute.amazonaws.com
+          
           #scp -r /home/circleci/project/target/ circleuser@ec2-65-0-182-232.ap-south-1.compute.amazonaws.com:/tmp/
        
 
