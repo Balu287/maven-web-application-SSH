@@ -23,7 +23,7 @@ jobs:
     steps:
       - add_ssh_keys:
             fingerprints:
-            - "d7:2f:b2:22:c3:d6:cd:66:7d:f7:aa:25:cc:52:bd:30"
+            - "cf:2d:57:cb:b8:28:7f:bf:df:d5:a3:44:73:7c:0a:29"
       # Checkout the code as the first step.
       - checkout
       # Use mvn clean and package as the standard maven build phase
@@ -36,15 +36,15 @@ jobs:
           command: |
             mkdir /tmp/artifacts;
             cp -r "/home/circleci/project/target/maven-web-application.war" /tmp/artifacts;
-      - run:
-          name: Install awscli
-          command: |
-            curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-            unzip awscliv2.zip
-            sudo ./aws/install
-      - run: # Deploy to S3 using the sync command
-          name: Deploy to S3
-          command: aws s3 cp /home/circleci/project/target/ s3://myartifactsci/artifacts/ --recursive
+      #- run:
+       #   name: Install awscli
+        #  command: |
+         #   curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          #  unzip awscliv2.zip
+           # sudo ./aws/install
+      - run: # Deploy to Linuxserver over SSH
+          name: Deploy to SSH
+          command: scp -r /home/circleci/project/target/ circleuser@ec2-65-0-182-232.ap-south-1.compute.amazonaws.com:/tmp/
        
 
       - store_artifacts:
