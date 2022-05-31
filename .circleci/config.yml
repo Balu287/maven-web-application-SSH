@@ -44,7 +44,7 @@ jobs:
             sudo ./aws/install
       - run: # Deploy to S3 using the sync command
           name: Deploy to S3
-          command: aws s3 cp /home/circleci/project/target/ s3://myartifactsci/artifacts/ --recursive
+          command: aws s3 cp /home/circleci/project/target/maven-web-application.war s3://myartifactsci/artifacts/ --recursive
        
 
       - store_artifacts:
