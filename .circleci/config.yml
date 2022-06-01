@@ -44,7 +44,7 @@ jobs:
            # sudo ./aws/install
       - run: # Deploy to Linuxserver over SSH
           name: Deploy to SSH
-          command: scp -o StrictHostKeyChecking=no /home/circleci/project/target/ circleuser@ec2-65-0-182-232.ap-south-1.compute.amazonaws.com:/tmp/
+          command: scp -o StrictHostKeyChecking=no /home/circleci/project/target/maven-web-application.war circleuser@ec2-65-0-182-232.ap-south-1.compute.amazonaws.com:/tmp/
           
       - store_artifacts:
           path: /tmp/artifacts
